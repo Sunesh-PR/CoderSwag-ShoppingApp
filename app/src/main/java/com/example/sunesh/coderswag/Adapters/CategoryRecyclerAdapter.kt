@@ -9,13 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.sunesh.coderswag.Model.Category
 import com.example.sunesh.coderswag.R
+import com.example.sunesh.coderswag.Services.DataService.categories
 import kotlinx.android.synthetic.main.category_view.view.*
 import java.util.zip.Inflater
 
-class CategoryRecyclerAdapter(val context: Context,val categories: List<Category>) : RecyclerView.Adapter<CategoryRecyclerAdapter.Holder> (){
+class CategoryRecyclerAdapter(val context: Context,val categories: List<Category>, val itemClick: (Category) -> Unit) : RecyclerView.Adapter<CategoryRecyclerAdapter.Holder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View= LayoutInflater.from(context).inflate(R.layout.category_view,parent,false)
-        return Holder(view)
+        return Holder(view,itemClick)
     }
     override fun getItemCount(): Int {
         return categories.count()
@@ -25,7 +26,7 @@ class CategoryRecyclerAdapter(val context: Context,val categories: List<Category
         holder?.bindCategory(context,categories[position])
     }
 
-    inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView !!){
+    inner class Holder(itemView: View?, val itemClick: (Category) -> Unit) : RecyclerView.ViewHolder(itemView !!){
         val categoryImage = itemView?.findViewById<ImageView>(R.id.categoryImage)
         val categoryName = itemView?.findViewById<TextView>(R.id.categoryName)
 
@@ -33,6 +34,9 @@ class CategoryRecyclerAdapter(val context: Context,val categories: List<Category
             val resourceId = context.resources.getIdentifier(category.image,"drawable",context.packageName)
             categoryImage?.setImageResource(resourceId)
             categoryName?.text = category.title
+            itemView.setOnClickListener { itemClick(category) }
+
+
         }
     }
 }

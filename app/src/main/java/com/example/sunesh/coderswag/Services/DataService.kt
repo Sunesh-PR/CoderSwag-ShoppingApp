@@ -2,6 +2,10 @@ package com.example.sunesh.coderswag.Services
 
 import com.example.sunesh.coderswag.Model.Category
 import com.example.sunesh.coderswag.Model.Product
+import com.example.sunesh.coderswag.Services.DataService.digital
+import com.example.sunesh.coderswag.Services.DataService.hats
+import com.example.sunesh.coderswag.Services.DataService.hoodies
+import com.example.sunesh.coderswag.Services.DataService.shirts
 
 object DataService {
     val categories = listOf(
@@ -21,24 +25,35 @@ object DataService {
     )
 
     val hats = listOf(
-            Product("Devslopes Graphic Beanie", "$18", "hat01"),
-            Product("Devslopes Hat Black", "$20", "hat02"),
-            Product("Devslopes Hat White", "$18", "hat03"),
-            Product("Devslopes Hat Snapback", "$22", "hat04")
+            Product("Devslopes Graphic Beanie", "$18", "hat1"),
+            Product("Devslopes Hat Black", "$20", "hat2"),
+            Product("Devslopes Hat White", "$18", "hat3"),
+            Product("Devslopes Hat Snapback", "$22", "hat4")
     )
 
     val hoodies = listOf(
-            Product("Devslopes Hoodie Gray", "$28", "hoodie01"),
-            Product("Devslopes Hoodie Red", "$32", "hoodie02"),
-            Product("Devslopes Gray Hoodie", "$28", "hoodie03"),
-            Product("Devslopes Black Hoodie", "$32", "hoodie04")
+            Product("Devslopes Hoodie Gray", "$28", "hoodie1"),
+            Product("Devslopes Hoodie Red", "$32", "hoodie2"),
+            Product("Devslopes Gray Hoodie", "$28", "hoodie3"),
+            Product("Devslopes Black Hoodie", "$32", "hoodie4")
     )
 
     val shirts = listOf(
-            Product("Devslopes Shirt Black", "$18", "shirt01"),
-            Product("Devslopes Badge Light Gray", "$20", "shirt02"),
-            Product("Devslopes Logo Shirt Red", "$22", "shirt03"),
-            Product("Devslopes Hustle", "$22", "shirt04"),
-            Product("Kickflip Studios", "18", "shirt05")
+            Product("Devslopes Shirt Black", "$18", "shirt1"),
+            Product("Devslopes Badge Light Gray", "$20", "shirt2"),
+            Product("Devslopes Logo Shirt Red", "$22", "shirt3"),
+            Product("Devslopes Hustle", "$22", "shirt4"),
+            Product("Kickflip Studios", "18", "shirt5")
     )
+
+    val digital = listOf<Product>()
 }
+
+    fun getProducts ( category : String) : List<Product>{
+        return when(category) {
+            "HATS" -> hats
+            "HOODIES" -> hoodies
+            "SHIRTS" -> shirts
+            else -> digital
+        }
+    }
