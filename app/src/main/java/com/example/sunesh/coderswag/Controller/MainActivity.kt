@@ -4,12 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.ArrayAdapter
-import android.widget.Toast
-import com.example.sunesh.coderswag.Adapters.CategoryAdapter
 import com.example.sunesh.coderswag.Adapters.CategoryRecyclerAdapter
-import com.example.sunesh.coderswag.Model.Category
-import com.example.sunesh.coderswag.ProductActivity
 import com.example.sunesh.coderswag.R
 import com.example.sunesh.coderswag.Services.DataService
 import com.example.sunesh.coderswag.Utilities.EXTRA_PRODUCT
@@ -26,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 //        val listAdapter : CategoryAdapter
 //        listAdapter = CategoryAdapter(this,DataService.categories)
         val adapter = CategoryRecyclerAdapter(this,DataService.categories){category ->
-            val productIntent = Intent(this,ProductActivity::class.java)
+            val productIntent = Intent(this, ProductActivity::class.java)
             productIntent.putExtra(EXTRA_PRODUCT,category.title)
             startActivity(productIntent)
 
